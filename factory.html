@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工厂模式</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+/**
+ *自行车商店类
+ *
+*/
+
+var BicycleShop = function () {
+	
+};
+BicycleShop.prototype = {
+	sellBicycle:function (model) {
+		var bicycle;
+
+		switch(model){
+			case 'The Speedster':// 快车
+				bicycle = new Speedster();
+				break;
+			case 'The Lowrider':// 低底盘车
+				bicycle = new Lowrider();
+				break;
+			case 'The Comfort Cruiser': // 舒适的车
+				bicycle = new Comfort();
+		}
+		Interface.ensureImplements(bicycle,Bicycle);
+		bicycle.asemble();
+		bicycle.wash();
+
+		return bicycle;
+	}
+}
+
+
+
+
+</script>
+
+	
+</body>
+</html>
