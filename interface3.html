@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鸭式辩型模仿接口</title>
+</head>
+<body>
+	
+
+<script type="text/javascript">
+	
+// 构造方法
+
+var Interface = function (name, methods) {
+	if(arguments.length != 2){
+		throw new Error("Interface constructor called width " + arguments.length + 'arguments,but expected exactly 2.');
+	}
+
+	this.name = name;
+	this.methods = [];
+	for(var i=0,len = methods.length;i<len;i++){
+		if(typeof methods[i]!=='string'){
+			throw new Error('Interface constructor expects method names to be passed in as a string');
+		}
+		this.methods.push(methods[i]);
+	}
+};
+
+// 静态类方法
+Interface.ensureImplements = function (object) {
+	if(arguments.length<2){// 要求2个以上的接口实现
+		throw new Error('function Interface.ensureImplements called width '+arguments.length+' arguments,but expects at least 2.');
+	}
+	for(var i =1,len = arguments.length;i<len;i++){
+		var interface = arguments[i];
+		if(interface.constructor !== Interface){
+			throw new Error('Function Interface.ensureImplements expects arguments two and above to be instances of Interface');
+		}
+		for(var j=0,methodsLen = interface.methods.length;j<methodsLen;j++){
+			if(!object[method] || typeof object[method] !== 'function'){
+				throw new Error('Function Interface.ensureImplements:object does not implement the '+interface.name+' interface. Method '+method + ' was not found.')
+			}
+		}
+
+	}
+};
+
+
+
+</script>
+
+</body>
+</html>
