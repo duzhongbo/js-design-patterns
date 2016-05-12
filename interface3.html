@@ -46,6 +46,36 @@ Interface.ensureImplements = function (object) {
 	}
 };
 
+// 定义接口
+var Composite = new Interface('Composite',['add','remove','getChild']);
+var FormItem = new Interface('FormItem',['save']);
+
+// 混合表单类
+var CompositeForm = function (id, method, action) {// 实现 Composite, FormItem接口
+	//
+}
+CompositeForm.prototype.add = function () {
+	
+}
+CompositeForm.prototype.remove = function () {
+	
+}
+CompositeForm.prototype.getChild = function () {
+	
+}
+CompositeForm.prototype.save = function () {
+	
+}
+
+
+// 检测实例是否实现Composite,FormItem接口的方法
+function addForm (formInstance) {
+	Interface.ensureImplements(formInstance, Composite, FormItem);
+}
+
+// 检测
+var c = new CompositeForm();
+addForm(c);
 
 
 </script>
