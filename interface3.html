@@ -28,7 +28,7 @@ var Interface = function (name, methods) {
 
 // 静态类方法
 Interface.ensureImplements = function (object) {
-	if(arguments.length<2){// 要求2个以上的接口实现
+	if(arguments.length<2){// 要求2个以上的参数
 		throw new Error('function Interface.ensureImplements called width '+arguments.length+' arguments,but expects at least 2.');
 	}
 	for(var i =1,len = arguments.length;i<len;i++){
