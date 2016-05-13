@@ -102,7 +102,7 @@ var BicycleFactory = {
 
 /*
  **
- *自行车商店类，抽象类
+ *自行车商店类(工厂)，抽象类，无法被实例化，只能用来派生子类，实例执行方法将会抛错
  *
 */
 var BicycleShop = function () {
@@ -131,6 +131,66 @@ function extend (subClass, superClass) {
 	subClass.prototype = new F();
 	subClass.prototype.constructor = subClass；
 }
+
+// AcmeBicycleShop 类
+var AcmeBicycleShop = function () {
+	
+};
+extend(AcmeBicycleShop,BicycleShop);
+AcmeBicycleShop.prototype.createBicycle = function (model) {
+	var bicycle;
+	switch(model){
+		case 'Thie Speedster':
+			bicycle = new AcmeSpeedshop();
+			break;
+		case 'The Lowrider':
+			bicycle = new AcmeLowrider();
+			break;
+		case 'The Flatlander':
+			bicycle = new AcmeFlatlander();
+			break;
+		case 'The Comfort Cruiser':
+		default:
+			bicycle = new AcmeComfortCruiser();
+	}
+	Interface.ensureImplements(bicycle,Bicycle);
+	return bicycle;
+}
+
+// GeneralProductsBicycleShop 类
+
+var GeneralProductsBicycleShop = function () {
+	
+};
+extend(GeneralProductsBicycleShop,BicycleShop);
+GeneralProductsBicycleShop.prototype.createBicycle = function (model) {
+	var bicycle;
+	switch(model){
+		case 'Thie Speedster':
+			bicycle = new GeneralProductsSpeedshop();
+			break;
+		case 'The Lowrider':
+			bicycle = new GeneralProductsLowrider();
+			break;
+		case 'The Flatlander':
+			bicycle = new GeneralProductsFlatlander();
+			break;
+		case 'The Comfort Cruiser':
+		default:
+			bicycle = new GeneralProductsComfortCruiser();
+	}
+	Interface.ensureImplements(bicycle,Bicycle);
+	return bicycle;
+
+}
+
+var alecsCruisers = new AcmeBicycleShop();
+var yourNewBike = alecsCruisers.sellBicycle('The Lowrider');
+
+var bobsCruisers = new GeneralProductsBicycleShop();
+var yourSecondNewBike = bobsCruisers.sellBicycle('The Lowrider');
+
+// 因为两个生成厂家生产的自行车款式完全相同，所以顾客买车时可不关心车究竟是哪家生产的。要是他们只想要Acme生产的自行车，他们可以去Acme专卖店买。
 
 </script>
 
