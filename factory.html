@@ -102,7 +102,7 @@ var BicycleFactory = {
 
 /*
  **
- *自行车商店类，改良
+ *自行车商店类，抽象类
  *
 */
 var BicycleShop = function () {
@@ -116,7 +116,20 @@ BicycleShop.prototype = {
 		bicycle.wash();
 
 		return bicycle;
+	},
+	createBicycle:function (model) {
+		throw new Error('Unsupported operation on an abstract class');
 	}
+}
+
+// 继承方法
+function extend (subClass, superClass) {
+	var F = function () {
+		
+	};
+	F.prototype = superClass.prototype;
+	subClass.prototype = new F();
+	subClass.prototype.constructor = subClass；
 }
 
 </script>
