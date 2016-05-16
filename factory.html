@@ -110,7 +110,7 @@ var BicycleShop = function () {
 };
 BicycleShop.prototype = {
 	sellBicycle:function (model) {
-		var bicycle = BicycleFactory.createBicycle(model);
+		var bicycle = this.createBicycle(model);
 
 		bicycle.assemble();
 		bicycle.wash();
@@ -184,6 +184,7 @@ GeneralProductsBicycleShop.prototype.createBicycle = function (model) {
 
 }
 
+// 这里两个类的创建都不是直接使用new，而是new出一个实例后，用实例的方法
 var alecsCruisers = new AcmeBicycleShop();
 var yourNewBike = alecsCruisers.sellBicycle('The Lowrider');
 
